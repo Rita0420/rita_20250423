@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>完整表單範例</title>
+</head>
+<body>
+  <h2>使用各種 input 類型的 HTML 表單</h2>
+
+  <form action="/submit" method="post">
+
+    <!-- 文字輸入 -->
+    <label>姓名：
+      <input type="text" name="name" placeholder="輸入姓名" required>
+    </label><br><br>
+
+    <!-- 密碼 -->
+    <label>密碼：
+      <input type="password" name="password" placeholder="輸入密碼" required>
+    </label><br><br>
+
+    <!-- 電子郵件 -->
+    <label>電子郵件：
+      <input type="email" name="email" placeholder="name@example.com">
+    </label><br><br>
+
+    <!-- 數字 -->
+    <label>年齡（1~100）：
+      <input type="number" name="age" min="1" max="100">
+    </label><br><br>
+
+    <!-- 日期 -->
+    <label>生日：
+      <input type="date" name="birthday">
+    </label><br><br>
+
+    <!-- 時間 -->
+    <label>預約時間：
+      <input type="time" name="appointment">
+    </label><br><br>
+
+    <!-- 日期時間 -->
+    <label>完整預約時間：
+      <input type="datetime-local" name="fulltime">
+    </label><br><br>
+
+    <!-- 單選 -->
+    <label>性別：</label>
+    <label><input type="radio" name="gender" value="male"> 男</label>
+    <label><input type="radio" name="gender" value="female"> 女</label><br><br>
+
+    <!-- 多選 -->
+    <label>興趣：</label>
+    <label><input type="checkbox" name="hobby" value="music"> 音樂</label>
+    <label><input type="checkbox" name="hobby" value="sports"> 運動</label>
+    <label><input type="checkbox" name="hobby" value="travel"> 旅遊</label><br><br>
+
+    <!-- 網址 -->
+    <label>個人網站：
+      <input type="url" name="website" placeholder="https://example.com">
+    </label><br><br>
+
+    <!-- 電話 -->
+    <label>電話：
+      <input type="tel" name="phone" placeholder="0912-345-678">
+    </label><br><br>
+
+    <!-- 搜尋 -->
+    <label>搜尋關鍵字：
+      <input type="search" name="search">
+    </label><br><br>
+
+    <!-- 顏色 -->
+    <label>最愛的顏色：
+      <input type="color" name="color">
+    </label><br><br>
+
+    <!-- 檔案上傳 -->
+    <label>上傳檔案：
+      <input type="file" name="upload">
+    </label><br><br>
+
+    <!-- 範圍 -->
+    <label>滿意度（0~100）：
+      <input type="range" name="satisfaction" min="0" max="100">
+    </label><br><br>
+
+    <!-- 隱藏欄位 -->
+    <input type="hidden" name="userID" value="12345">
+
+    <!-- 按鈕 -->
+    <input type="submit" value="送出表單">
+    <input type="reset" value="重設資料">
+
+  </form>
+</body>
+</html>
