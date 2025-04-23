@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 40%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        table,tr,td{
+            border: 1px solid black;
+        }
+        td{
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">新進員工基本資料</h1>
+<table>
+    
+    <form>
+    <tr>
+        <td>
+        <label for="name"><strong>姓名</strong></label>
+        <input type="text" name="name" id="name">
+        </td>
+        <td>
+        <label for="id"><strong>身分證字號</strong></label>
+        <input type="text" name="name" id="id">
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <label for="birthday"><strong>生日</strong></label>
+        <input type="date" name="birthday" id="birthday">
+       
+        </td>
+        <td>
+        <label ><strong>性別</strong></label>
+        <input type="radio" name="boy" id="boy">  
+        <label for="boy">男</label>
+        <input type="radio" name="girl" id="girl">  
+        <label for="girl">女</label>   
+        <input type="radio" name="other" id="other">  
+        <label for="other">其他</label>
+        </td>
+    </tr>    
+    <tr>
+        <td>
+        <label for="blod"><strong>血型</strong></label>
+            <select name="blod" id="blod">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="AB">AB</option>
+                <option value="O">O</option>
+            </select>
+        </td>
+        <td>
+            <label ><strong>婚姻</strong></label>
+            <input type="radio" name="marry" id="marry">  
+            <label for="marry">已婚</label>
+            <input type="radio" name="nomarry" id="nomarry">  
+            <label for="nomarry">未婚</label>   
+            <input type="radio" name="other1" id="other1">  
+            <label for="other1">一言難盡</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label ><strong>役別</strong></label>
+            <input type="radio" name="army" id="army">  
+            <label for="army">已役</label>
+            <input type="radio" name="noarmy" id="noarmy">  
+            <label for="noarmy">未役</label>   
+            <input type="radio" name="no" id="no">  
+            <label for="no">免役</label>
+        </td>
+        <td>
+            <label ><strong>持有駕照</strong></label>
+            <input type="checkbox" name="no1" id="no1">
+            <label for="no1">無</label>
+            <input type="checkbox" name="car" id="car">
+            <label for="car">汽車</label>
+            <input type="checkbox" name="motor" id="motor">
+            <label for="motor">機車</label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label ><strong>通勤方式</strong></label>
+            <input type="checkbox" name="car1" id="car1">
+            <label for="car1">開車</label>
+            <input type="checkbox" name="motor1" id="motor1">
+            <label for="motor1">騎機車</label>
+            <input type="checkbox" name="bike" id="bike">
+            <label for="bike">騎單車</label>
+            <input type="checkbox" name="bus" id="bus">
+            <label for="bus">大眾運輸工具</label>
+            <input type="checkbox" name="live" id="live">
+            <label for="live">住宿舍</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="height"><strong>身高</strong></label>
+            <input type="text" name="height" id="height" placeholder="公分">
+        </td>
+        <td>
+            <label for="weight"><strong>體重</strong></label>
+            <input type="text" name="weight" id="weight" placeholder="公斤">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="phone"><strong>連絡電話</strong></label>
+            <input type="text" name="phone" id="phone" >
+        </td>
+        <td>
+            <label for="number"><strong>行動電話</strong></label>
+            <input type="text" name="number" id="number">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="phone"><strong>電子郵件</strong></label>
+            <input type="text" name="phone" id="phone" >
+        </td>
+        <td>
+            <label for="line"><strong>LINE ID</strong></label>
+            <input type="text" name="line" id="line">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label for="address"><strong>聯絡地址</strong></label>
+            <input type="text" name="address" id="address" size="70">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label for="address1"><strong>戶籍地址</strong></label>
+            <input type="text" name="address1" id="address1" size="70">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="person"><strong>緊急聯絡人</strong></label>
+            <input type="text" name="person" id="person">
+        </td>
+        <td>
+            <label for="person1"><strong>關係</strong></label>
+            <input type="text" name="person1" id="person1">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="phone1"><strong>連絡電話</strong></label>
+            <input type="text" name="phone1" id="phone1" >
+        </td>
+        <td>
+            <label for="number1"><strong>行動電話</strong></label>
+            <input type="text" name="number1" id="number1">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p style="text-align: center;">學歷</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="school"><strong>學校名稱</strong></label>
+            <input type="text" name="school" id="school" >
+        </td>
+        <td>
+            <label for="number2"><strong>科系<strong></label>
+            <input type="text" name="number2" id="number2">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <p style="text-align: center;">工作經歷</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="z"><strong>服務單位</strong></label>
+            <input type="text" name="z" id="z" >
+        </td>
+        <td>
+            <label for="x"><strong>職稱<strong></label>
+            <input type="text" name="x" id="x">
+        </td>
+    </tr>
+    <tr>
+        <td >
+            <label for="c"><strong>工作說明</strong></label>
+            <input type="text" name="c" id="c" >
+        </td>
+        <td>
+            <label for="v"><strong>年資<strong></label>
+            <input type="text" name="v" id="v">
+        </td>
+    </tr>
+
+    
+    </form>
+</table>
+
+</body>
+</html>
