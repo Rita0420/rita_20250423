@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hover</title>
     <style>
+        table{
+            width: 80%;
+            text-align: center;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        table,th,tr,td{
+            border: 1px solid black;
+        }
+        .money::before{
+            content:'$' ;
+        }
+        .money::after{
+            content: '元';
+        }
+        .money:hover{
+            font-size: x-large;
+            color: brown;
+        }
         .box {
             width: 300px;
             height: 300px;
@@ -16,6 +35,35 @@
     </style>
 </head>
 <body>
+    <table>
+        <tr>
+            <th>產品</th>
+            <th>價格</th>
+        </tr>
+        <tr>
+            <td>咖啡</td>
+            <td class="money">100</td>
+        </tr>
+        <tr>
+            <td>咖啡</td>
+            <td class="money">100</td>
+        </tr>
+        <tr>
+            <td>咖啡</td>
+            <td class="money">100</td>
+        </tr>
+        <tr>
+            <td>咖啡</td>
+            <td class="money">100</td>
+        </tr>
+        <tr>
+            <td>咖啡</td>
+            <td class="money">100</td>
+        </tr>
+    </table>
+
+<br><br><br>
+
     <div class="box">
 
     </div>
