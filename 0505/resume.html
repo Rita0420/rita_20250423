@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>履歷</title>
+    <link rel="stylesheet" href="./cv_style.css">
+    <style>
+        table,tr,td{
+            border: 1px solid #999;
+        }
+        table{
+            margin: auto;
+            width: 80%;
+            border-collapse: separate;
+            border-radius: 10px;
+            overflow: hidden;
+            border-spacing: 0;
+            box-shadow: 0 2px 5px white;
+            
+        }
+        h3{
+            color: aqua;
+        }
+        h5{
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td style="border-right: none;text-align: center;">
+                <p style="font-size: 10px;">
+                    姓名：林俊宏<br>
+                    電話：0912-345-678<br>
+                    Email：junhong.lin.dev@gmail.com<br>
+                    LinkedIn：linkedin.com/in/junhonglin<br>
+                    GitHub：github.com/junhonglin<br>
+                </p>    
+            </td>
+            <td style="text-align: right; border-left: none;">
+                <img src="./cv.png" alt="照片" width="30%">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>求職目標</h3>
+                <p>
+                尋找一份後端工程師職位，
+                期望能夠運用我在 Node.js、Python 與雲端部署方面的專業知識，
+                參與可擴展系統的設計與開發，並與團隊協作打造高品質的產品。 
+                </p>    
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>個人簡介</h3>
+                <p>
+                具備三年以上後端開發經驗，
+                擅長使用 Node.js、Python（Flask、FastAPI）、MySQL、PostgreSQL 等技術。
+                熟悉 RESTful API 設計原則，並具備 CI/CD、自動化部署及 AWS 雲端服務實務經驗。
+                對於系統效能優化與資料安全有高度敏感度，
+                樂於研究新技術並善於跨部門溝通協作。
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>技術專長</h3>
+                <ul>
+                    <li>程式語言：Node.js、Python、JavaScript、TypeScript、Shell Script</li>
+                    <li>框架/工具：Express.js、NestJS、FastAPI、Flask</li>
+                    <li>資料庫：PostgreSQL、MySQL、MongoDB、Redis</li>
+                    <li>雲端與部署：AWS（EC2, RDS, S3, Lambda）、Docker、Nginx、GitHub Actions、Terraform</li>
+                    <li>其他：Git、Linux、Swagger/OpenAPI、Jest、Postman、Kubernetes（基礎）</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>工作經歷</h3>
+                <h5>後端工程師｜品軒科技股份有限公司</h5>
+                <p>2022年6月 – 至今</p>
+                <ul>
+                    <li>設計與實作 RESTful API，使用 NestJS 串接第三方金流與物流服務</li>
+                    <li>將原本部署於 Heroku 的系統遷移至 AWS EC2 並加上 CI/CD 流程</li>
+                    <li>撰寫與維護單元測試與整合測試，系統測試覆蓋率從 45% 提升至 85%</li>
+                    <li>重構舊有資料庫 schema，將查詢效能提升約 60%</li>
+                    <li>與前端工程師協作設計 API 規格，並使用 Swagger 進行文件自動化</li>
+                </ul>
+                <hr>
+                <h5>後端實習生｜新創點科技有限公司</h5>
+                <p>2021年7月 – 2022年1月</p>
+                <ul>
+                    <li>使用 Flask 開發內部報表管理系統，減少每月報表產出時間約 50%</li>
+                    <li>整合第三方 OAuth2 登入機制，提升使用者體驗與資料安全性</li>
+                    <li>撰寫 ETL script 自動化處理每日資料同步作業</li>
+                </ul>   
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>學歷背景</h3>
+                國立成功大學 資訊工程學系 學士<br>
+                2017年 – 2021年<br>
+            </td>
+            <td>
+                <h3>語言能力</h3>
+                中文：母語<br>
+                英文：中上（TOEIC 835分，可流暢閱讀技術文件與書寫）<br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>專案經驗</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h5>1. 商品庫存與訂單管理系統（Side Project）</h5>
+                <ul>
+                    <li>使用 FastAPI + PostgreSQL 建置，具備商品查詢、下單與庫存同步功能</li>
+                    <li>撰寫 JWT 認證機制與 RBAC 權限管理</li>
+                    <li>使用 Docker Compose 進行本地端模擬與測試</li>
+                </ul>
+            </td>
+            <td>
+                <h5>2. DevOps 實驗平台</h5>
+                <ul>
+                    <li>架設 CI/CD pipeline（GitHub Actions），自動建置與部署到 AWS EC2</li>
+                    <li>使用 Terraform 自動化建立基礎設施</li>
+                    <li>串接 Slack 通知系統異常狀態</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    
+</body>
+</html>
