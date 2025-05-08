@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            box-sizing: content-box;
+            margin: 0;
+        }
+
+        .nav {
+            background-color: cadetblue;
+            width: 100%;
+            text-align: center;
+            height: 160px;
+            position: fixed;
+            z-index: 10;
+        }
+
+        .tag {
+            background-color: rgb(102, 207, 211);
+            display: inline-block;
+            margin-left: 100px;
+            height: 50px;
+            width: 140px;
+            text-align: center;
+            padding-top: 37px;
+            border-radius: 30px;
+        }
+
+        h3 {
+            color: rgb(54, 66, 66);
+        }
+
+        .container {
+            background-color: aquamarine;
+            width: 100%;
+            height: 80vh;
+            text-align: center;
+        }
+
+        .container1 {
+            position: relative;
+            top: 200px;
+
+        }
+
+        .container2 {
+            position: relative;
+            top: 300px;
+        }
+
+        .container3 {
+            position: relative;
+            top: 400px;
+        }
+
+        .footor {
+            background-color: blue;
+            width: 100%;
+            height: 10vh;
+            position: relative;
+            top: 800px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div>
+            <h3>我推的動漫</h3>
+        </div>
+        <div class="tag">
+            <a href="#container1">航海王</a>
+        </div>
+        <div class="tag">
+            <a href="#container2">鋼之鍊金術師</a>
+        </div>
+        <div class="tag">
+            <a href="#container3">只想告訴你</a>
+        </div>
+        <div class="tag">
+            <a href="#footor">123</a>
+        </div>
+    </div>
+    <div class="container container1" id="container1">
+        <div>
+            <img src="./one.png" alt="" width="50%">
+        </div>
+        <div>
+            <p>《ONE PIECE》（日語：ONEPIECE／ワンピース；中文譯名：海賊王、航海王），
+                是日本漫畫家尾田榮一郎創作的少年漫畫，
+                自1997年7月22日起在集英社旗下雜誌《週刊少年Jump》連載[1]、同年12月發行第一冊單行本，
+                至今已出版110冊單行本。並在漫畫雜誌《週刊少年Jump》中長期佔據人氣榜的第一名，單行本在日本以外，
+                亦已有30多個國家翻譯版本發行。另外也衍生出諸多衍生作品，
+                包括同名的電視動畫、電影、小說和電子遊戲等周邊媒體產品。
+            </p>
+        </div>
+    </div>
+    <div class="container container2" id="container2">
+        <img src="./brotherhood.jpg" alt="" width="50%">
+    </div>
+    <div class="container container3" id="container3">
+        <img src="./told.jpeg" alt="" width="30%">
+    </div>
+    <div class="footor" id="footor"></div>
+</body>
+
+</html>
