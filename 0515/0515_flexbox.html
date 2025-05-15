@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexbox</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+        }
+        body{
+            background-color: #faecbf;
+        }
+        .nav{
+            width: 100%;
+            background-color: #03123f;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            position: fixed;
+            margin-top: -3px;
+        }
+        .botton{
+            width: 100px;
+            height: 30px;
+            background-color: #faecbf;
+            border-radius: 30px;
+            text-align: center;
+            transition-duration: 1s;
+        }
+        .botton:hover{
+            scale: 1.5;
+        }
+        a{
+            color: #03123f;
+            text-decoration: none;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            background-color:#faecbf;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 2px;
+        }
+        
+        .box{
+            width: 80%;
+            background-image: url(./img/one.webp);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            height: 900px;
+            display: grid;
+            
+
+        }
+        .back1{
+            width: 50px;
+            height: 200px;
+            background-color: aqua;
+        }
+        .box2{
+            width: 45%;
+            background-color: #03123f;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .luffy{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .luffy1{
+            background-image: url(./img/luffy.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .zoro{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 150px;
+        }
+        .zoro1{
+            background-image: url(./img/zoro.avif);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        
+        .box3{
+            width: 33%;
+            background-color: #03123f;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+        .nami{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 130px;
+        }
+        .nami1{
+            background-image: url(./img/nami1.jpg);
+            background-repeat: no-repeat;
+            background-size: 92%;
+            background-position-x: center;
+        }
+
+        .usopp{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 130px;
+        }
+        .usopp1{
+            background-image: url(./img/godusopp.jpg);
+            background-repeat: no-repeat;
+            background-size: 92%;
+            background-position-x: center;
+        }
+        .sanji{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 120px;
+        }
+        .sanji1{
+            background-image: url(./img/sanji.jpg);
+            background-repeat: no-repeat;
+            background-size: 92%;
+            background-position-x: center;
+        }
+
+
+        .box4{
+            width: 24.5%;
+            background-color: #03123f;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chopper{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 90px;
+        }
+        .chopper1{
+            background-image: url(./img/chopper1.jpg);
+            background-repeat: no-repeat;
+            background-size: 150%;
+            background-position-x: center;
+            background-position-y: center;
+        }
+        .robin{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 90px;
+        }
+        .robin1{
+            background-image: url(./img/robin.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position-x: center;
+            background-position-y: center;
+        }
+         .franky{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 90px;
+        }
+        .franky1{
+            background-image: url(./img/franky.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position-x: center;
+            background-position-y: center;
+        }
+         .brook{
+            width: 49%;
+            height: 45vh;
+            background-color: #faecbf;
+            text-align: center;
+            padding-top: 90px;
+        }
+        .brook1{
+            background-image: url(./img/brook.webp);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-position-x: center;
+            background-position-y: center;
+        }
+        p{
+            color: #03123f;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="botton">
+            <a href="#container1">回首頁</a>
+        </div>
+        <div class="botton">
+            <a href="#container2">魯夫</a>
+        </div>
+        <div class="botton">
+            <a href="#container2">索隆</a>
+        </div>
+        <div class="botton">
+            <a href="#container3">娜美</a>
+        </div>
+        <div class="botton">
+            <a href="#container3">騙人布</a>
+        </div>
+        <div class="botton">
+            <a href="#container3">香吉士</a>
+        </div>
+        <div class="botton">
+            <a href="#container4">喬巴</a>
+        </div>
+        <div class="botton">
+            <a href="#container4">羅賓</a>
+        </div>
+        <div class="botton">
+            <a href="#container4">佛朗基</a>
+        </div>
+        <div class="botton">
+            <a href="#container4">布魯克</a>
+        </div>
+    </div>
+    <div class="container" id="container1">
+        <div class="box">
+            <div class="back1"></div>
+        </div>
+    </div>
+    <div class="container" id="container2">
+        <div class="box2 bx21">
+            <div class="luffy luffy1"></div>
+            <div class="luffy">
+                <p>蒙其·D·魯夫（英語：Monkey D. Luffy）是尾田榮一郎創作的日本漫畫《ONE PIECE》的中心人物。
+                外號「草帽小子」，小時候無意中吃下了惡魔果實超人系「橡膠果實」而獲得了身體像橡膠一樣伸縮自如的能力，
+                隨著故事發展揭曉該果實的另一個名字為動物系的「人人果實 幻獸種 尼卡型態」，
+                魯夫以「海賊王」為目標，而搭上了出海冒險之旅，從東方藍出發前往偉大的航道，
+                尋找傳說中海賊王哥爾·D·羅傑留下的「ONE PIECE一個大秘寶」，集結夥伴組成草帽海賊團，
+                他在旅途中結交了許多朋友，也樹立了許多敵人。</p>
+            </div>
+        </div>
+        <div class="box2 box22">
+            <div class="zoro zoro1"></div>
+            <div class="zoro">
+                <p>
+                    羅羅亞·索隆是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，
+                    是主角魯夫的第1位夥伴，草帽海賊團二把手兼戰鬥員。
+                    他立志成為世界最強劍士，以雙手持刀、嘴上再咬一把刀的三刀流戰鬥風格聞名。
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="container3">
+         <div class="box3">
+            <div class="nami nami1"></div>
+            <div class="nami">
+                <p>
+                    娜美（ナミ）是日本漫畫家尾田榮一郎所創作的日本漫畫《ONE PIECE》中的女主角，
+                    是男主角魯夫的第2位夥伴，草帽海賊團航海士。
+                    是位懂得製圖、精通氣象和航海的小偷，夢想是完成世界地圖。
+                </p>
+            </div>
+         </div>
+         <div class="box3">
+            <div class="usopp usopp1"></div>
+            <div class="usopp">
+                <p>
+                    騙人布（ウソップ）是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，
+                    是該作品的中的一位主要角色。是主角魯夫的第3位夥伴，
+                    草帽海賊團狙擊手。雖然他個性悲觀懦弱，但他立志成為勇敢的海上戰士。
+                </p>
+            </div>
+        </div>
+       
+        <div class="box3">
+            <div class="sanji sanji1"></div>
+            <div class="sanji">
+                <p>
+                    賓什莫克·香吉士（ヴィンスモーク・サンジ）是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，
+                    是該作品的中的一位主要角色，是主角魯夫的第4位夥伴，草帽海賊團廚師。
+                    以獨特的踢技戰鬥風格聞名，熱愛女性，是個狂熱的「擁女主義者」紳士。
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="container4">
+        <div class="box4">
+            <div class="chopper chopper1"></div>
+            <div class="chopper">
+                <p>
+                    多尼多尼·喬巴是日本漫畫家尾田榮一郎所創作的少年漫畫《ONE PIECE》中的虛構角色，
+                    是該作品的中的一位主要角色，是主角魯夫的第5位夥伴，草帽海賊團船醫。是一隻有藍鼻子的馴鹿醫生，
+                    因為吃下的「人人果實」讓他得到了能變成獸人的特殊能力，夢想是透過學習醫術而讓自己成為萬靈藥。
+                </p>
+            </div>
+        </div>
+        <div class="box4">
+            <div class="robin robin1"></div>
+            <div class="robin">
+                <p>
+                    妮可·羅賓是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，是該作品的中的一位主要角色，
+                    是主角魯夫的第6位加入夥伴，草帽海賊團考古學家。考古學之島「歐哈拉」的遺孤，
+                    夢想是透過找到散落在《航海王》世界中一種被稱為歷史本文的文獻，以查明被消除的歷史。
+                </p>
+            </div>
+        </div>
+        <div class="box4">
+            <div class="franky franky1"></div>
+            <div class="franky">
+                <p>
+                    佛朗基是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，是該作品的中的一位主要角色，
+                    是主角魯夫的第7位夥伴，草帽海賊團船匠，原佛朗基家族族長。是一名改造人，
+                    全身上下充滿各種機械裝置和武器。佛朗基本來是想製造出夢想之船，但千陽號完成後，只想看到自己製造的船能到達世界盡頭。
+                </p>
+            </div>
+        </div>
+        <div class="box4">
+            <div class="brook brook1"></div>
+            <div class="brook">
+                <p>
+                    布魯克是日本漫畫家尾田榮一郎所創作的少年漫畫《航海王》中的虛構角色，是該作品的中的一位主要角色。
+                    是主角魯夫的第8位夥伴，草帽海賊團音樂家，
+                    原倫巴海賊團代理船長，外表是一具爆炸頭骷髏，跟索隆一樣都是劍士，夢想是繞行世界一圈後回到顛倒山雙子峽跟拉布重逢。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
