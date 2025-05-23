@@ -1,6 +1,7 @@
         * {
             box-sizing: border-box;
             margin: 0;
+            font-family: '標楷體';
         }
 
         .header {
@@ -36,6 +37,28 @@
             /* background-color: aquamarine; */
             border: 3px double black;
             border-top: 0;
+            font-family: '標楷體';
+            font-weight: 500;
+        }
+        
+        .club{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 200px;
+            height: 35px;
+            margin-top: 8px;
+            margin-left: 4px;
+            padding-top: 8px;
+            background-image: url(../images/menu1.png);
+        }
+        
+        .text{
+            font-size: 24px;
+            text-decoration: underline black ;
+            text-underline-offset: 6px;
+            color: #FF00FF;
+            text-align: center;
         }
         
         .update{
@@ -44,6 +67,8 @@
             /* background-color: lightcoral; */
             border: 3px double black;
             border-top: 0;
+            text-align: center;
+            font-size: 16px;
         }
         
         .container-right{
