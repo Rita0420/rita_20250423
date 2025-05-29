@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" id="num1">
+    <input type="text" id="opt">
+    <input type="number" id="num2">
+    <button id="button">送出</button>
+    <br><br>
+    <div id="ans"></div>
+
+    <script>
+        let num1 = document.getElementById('num1');
+        let num2 = document.getElementById('num2');
+        let opt = document.getElementById('opt');
+        let button = document.getElementById('button');
+        let ans=document.getElementById('ans');
+
+        button.addEventListener("click", function () {
+            console.log("button ok", button);
+
+            let num1Value = Number(num1.value);
+            console.log("值是", num1Value);
+            console.log("狀態是", typeof (num1Value));
+
+            let optValue = opt.value;
+            console.log("值是", opt);
+            console.log("狀態是", typeof (optValue));
+
+
+            let num2Value = Number(num2.value);
+            console.log("值是", num2Value);
+            console.log("狀態是", typeof (num2Value));
+
+            let ans1 = 0;
+
+            switch (optValue) {
+                case '+':
+                    ans1 = num1Value + num2Value;
+                    
+                    break;
+                case '-':
+                    ans1 = num1Value - num2Value;
+                    break;
+                case '*':
+                    ans1 = num1Value * num2Value;
+                    break;
+                case '/':
+                    ans1 = num1Value / num2Value;
+                    break;
+
+                default:
+                    break;
+            }
+            ans.innerText=`${num1Value}${optValue}${num2Value}=${ans1}`;
+        })
+
+    </script>
+</body>
+
+</html>
