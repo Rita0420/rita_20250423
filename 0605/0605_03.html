@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 50vw;
+            height: 50vh;
+            /* background-color: aqua; */
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type="text" id="myInput">
+    </p>
+    <button type="button" id="myBtn">myBtn</button>
+
+    <div class="box"></div>
+
+    <script>
+        let myBtn=document.getElementById('myBtn');
+        let myInput=document.getElementById('myInput');
+        console.log('myBtn',myBtn);
+
+
+        myBtn.addEventListener('click',function(){
+            console.log('myBtn ok');
+            let getInput=myInput.value;
+            let url=`https://dictionary.cambridge.org/dictionary/english/${getInput}`;
+            //直接跳分頁
+            // window.open(url);
+            //同頁面直接跳轉不能回上頁
+            // window.location.replace(url);
+            //同頁面跳轉可以回上頁
+            window.location.assign(url);
+            // window.location.href = url;
+            
+            
+        })
+        
+    </script>
+</body>
+</html>
