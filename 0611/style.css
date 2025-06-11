@@ -1,0 +1,182 @@
+        * {
+            margin: 0;
+        }
+
+        body {
+            background-color: rgb(242, 240, 240, 0.5);
+        }
+
+        header {
+            width: 100vw;
+            height: 10vh;
+            /* background-color: antiquewhite; */
+            margin: auto;
+            background-color: rgb(221, 176, 176);
+            position: fixed;
+            display: flex;
+            justify-content: space-around;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logo {
+            width: 33%;
+            height: 100%;
+            /* background-color: aqua; */
+            text-align: center;
+        }
+
+        .one {
+            height: 100%;
+        }
+
+        .title {
+            width: 33%;
+            height: 100%;
+            /* background-color: aquamarine; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(155, 110, 110);
+        }
+
+        .cart {
+            width: 50%;
+            height: 90%;
+            background-color: rgba(52, 68, 68, 0.5);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 5px double rgb(155, 110, 110);
+            border-radius: 15px;
+            font-weight: bolder;
+        }
+        
+        .car {
+            height: 60%;
+        }
+        
+        .box {
+            width: 33%;
+            height: 95%;
+            /* background-color: blue; */
+            display: flex;
+            justify-content: center;
+        }
+        
+        .box1 {
+            width: 70%;
+            /* background-color: black; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 2vw;
+            color: rgb(243, 230, 230);
+        }
+
+        .total {
+            /* background-color: aqua;                                                                                                                    */
+            width: 100%;
+            /* text-align: center; */
+            height: 2rem;
+            font-size: 2em;
+        }
+
+        .spPrice {
+            /* background-color: aquamarine; */
+            font-size: 2em;
+            margin-right: 3vw;
+        }
+
+        .save {
+            align-self: flex-end;
+            /* background-color: azure; */
+            color: brown;
+        }
+
+        table,
+        th,
+        tr,
+        td {
+            border: 3px solid rgb(155, 110, 110);
+            font-weight: bolder;
+            background-color: rgb(30, 57, 57, 0.5);
+            color: rgb(243, 230, 230);
+        }
+
+        table {
+            width: 70vw;
+            margin: auto;
+            margin-top: 12vh;
+            text-align: center;
+            border-collapse: collapse;
+            margin-bottom: 5vh;
+        }
+
+        .number {
+            width: 10vw;
+        }
+
+        .id {
+            width: 3vw;
+        }
+
+        .name {
+            width: 10vw;
+        }
+
+        .pic {
+            width: 20%;
+        }
+
+        .coffee {
+            width: 100%;
+            height: 100%;
+        }
+        .moneyTh{
+            width: 20vw;
+        }
+
+
+
+
+        .money {
+            width: 100%;
+            /* background-color: aqua; */
+        }
+
+        input {
+            width: 5vw;
+            height: 3vh;
+            border-radius: 15px;
+            border-style: dashed;
+            background-color:rgb(30, 57, 57, 0.5);
+            color: rgb(243, 230, 230);
+            text-align: center;
+        }
+
+        input:hover{
+            scale: 1.1;
+        }
+
+
+
+
+        footer {
+            width: 100vw;
+            height: 3vh;
+            background-color: rgb(221, 176, 176);
+            text-align: center;
+            color: rgb(155, 110, 110);
+            padding-top: 0.7vh;
+        }
+        .ani{
+            /* font-size: 2em; */
+            scale: 1.5;
+        }
+
+        .ani1{
+            /* font-size: 1em; */
+            scale: 1;
+        }
