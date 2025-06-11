@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 80%;
+            height: 90vh;
+            background-color: aquamarine;
+            margin: auto;
+            text-align: center;
+            margin-top: 5vh;
+        }
+
+        .bg-yellow {
+            background-color: lightgoldenrodyellow;
+        }
+
+        button {
+            width: 10vw;
+        }
+
+        table{
+            width: 90%;
+            margin: auto;
+        }
+        table,tr,td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>複利計算</h3>
+        <hr>
+        <p>投入(萬) &nbsp;&nbsp;&nbsp;
+            <input type="text" name="" id="money">
+        </p>
+        <p>投報(%) &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="" id="rate">
+        </p>
+        <p>年限(年) &nbsp;&nbsp;&nbsp;
+            <input type="text" name="" id="year">
+        </p>
+        <p>
+            <button type="button" id="myBtn">送出</button>
+        </p>
+    </div>
+
+    <div class="container bg-yellow">
+        <h3>試算結果</h3>
+        <hr>
+        <table>
+            <tr>
+                <td class="yearTd">年</td>
+                <td class="moneyTd">本利和</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>20</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const money = $('#money');
+            const rate = $('#rate');
+            const year = $('#year');
+            const myBtn = $('#myBtn');
+
+            myBtn.click(function(){
+                console.log('myBtn',myBtn);
+                let moneyValue=Number(money.val());
+                let rateValue=Number(rate.val());
+                let yearValue=Number(year.val());
+                console.log('money',moneyValue);
+                console.log('rate',rateValue);
+                console.log('year',yearValue);  
+                
+                for(let tmpYear = 1; tmpYear <= yearValue; tmpYear++){
+                    console.log('tmpYear',tmpYear);
+                    
+                    
+                }
+
+            })
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>
