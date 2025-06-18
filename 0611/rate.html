@@ -38,13 +38,13 @@
         <h3>複利計算</h3>
         <hr>
         <p>投入(萬) &nbsp;&nbsp;&nbsp;
-            <input type="text" name="" id="money">
+            <input type="text" name="" id="money" value="100">
         </p>
         <p>投報(%) &nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" name="" id="rate">
+            <input type="text" name="" id="rate" value="8">
         </p>
         <p>年限(年) &nbsp;&nbsp;&nbsp;
-            <input type="text" name="" id="year">
+            <input type="text" name="" id="year" value="10">
         </p>
         <p>
             <button type="button" id="myBtn">送出</button>
@@ -54,19 +54,7 @@
     <div class="container bg-yellow">
         <h3>試算結果</h3>
         <hr>
-        <table>
-            <tr>
-                <td class="yearTd">年</td>
-                <td class="moneyTd">本利和</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>20</td>
-            </tr>
+        <table id="myTable">
         </table>
 
     </div>
@@ -82,6 +70,24 @@
             const rate = $('#rate');
             const year = $('#year');
             const myBtn = $('#myBtn');
+            const myTable = $('#myTable');
+            // let data=[
+            //     {
+            //         'id':1,
+            //         'year':1,
+            //         'money':'100.00'
+            //     },
+            //     {
+            //         'id':2,
+            //         'year':2,
+            //         'money':'108.00'
+            //     },
+            //     {
+            //         'id':3,
+            //         'year':3,
+            //         'money':'116.64'
+            //     }
+            // ];
 
             myBtn.click(function(){
                 console.log('myBtn',myBtn);
@@ -90,14 +96,83 @@
                 let yearValue=Number(year.val());
                 console.log('money',moneyValue);
                 console.log('rate',rateValue);
-                console.log('year',yearValue);  
-                
-                for(let tmpYear = 1; tmpYear <= yearValue; tmpYear++){
-                    console.log('tmpYear',tmpYear);
-                    
-                    
-                }
+                console.log('year',yearValue);
 
+                myTable.text("");
+                
+                
+                let data=[];
+                
+                // let tmpObj={
+                //     'id':1,
+                //     'year':1,
+                //     'money':'1000.00'
+                // }
+                
+                for(tmpYear=1;tmpYear<=yearValue;tmpYear++){
+                    console.log('tmpYear',tmpYear);
+                    let tmpMoney=moneyValue;
+                    let sumMoney=0;
+                    let tmpObj={};
+                    // if(tmpYear == 1){
+                    //     sumMoney=tmpMoney;
+                    //     tmpObj={
+                    //     'id':tmpYear,
+                    //     'year':tmpYear,
+                    //     'money':sumMoney
+                    //     }
+                    // }else{
+                        sumMoney=tmpMoney*(1+(rateValue/100))**tmpYear;
+                        let fixMoney=sumMoney.toFixed(2);
+                        tmpObj={
+                            'id':tmpYear,
+                            'year':tmpYear,
+                            'money':fixMoney
+                         }
+                    //}
+                    console.log('tmpObj',tmpObj);
+                    
+                    data.push(tmpObj);
+                }
+                
+
+                
+                let tmpText=`
+                        <tr>
+                            <td>1</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>10</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>10</td>
+                        </tr>
+                        `;
+
+                let sum=0;
+                let tmpResul=``;
+                let th=`
+                    <tr>
+                        <td class="yearTd">年</td>
+                        <td class="moneyTd">本利和</td>
+                    </tr>
+                    `
+                $.each(data, function (key, value) { 
+                     console.log('key',key);
+                     console.log('value',value);
+                     tmpResul+=`
+                        <tr>
+                            <td>${value.year}</td>
+                            <td>${value.money}</td>
+                        </tr>
+                        `;
+                     
+                });
+                    myTable.append(th).append(tmpResul);
+                
             })
 
 

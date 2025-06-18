@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>複利計算</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="">
+            <label for="money">投入金額</label>
+            <input type="text" value="100" class="moneyInput">
+            <label for="rate">利率(%)</label>
+            <input type="text" value="8" class="rateInput">
+            <label for="year">年限(年)</label>
+            <input type="text" value="10" class="yearInput" id="yearInput">
+            <button type="button" class="myBtn">計算</button>
+        </form>
+    </div>
+    <div class="container bg-pink">
+        <div class="box">
+            <div class="year">年</div>
+            <div class="money">本利和</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+
+    <script>
+        $(document).ready(function () {
+            const money = $('.moneyInput');
+            const rate = $('.rateInput');
+            const year = $('.yearInput');
+            const myBtn = $('.myBtn');
+            const box = $('.box');
+
+            myBtn.click(function () {
+                let moneyValue = Number(money.val());
+                let rateValue = Number(rate.val());
+                let yearValue = Number(year.val());
+                console.log('yearValue', yearValue);
+
+                box.text("");
+                let tmpText = `
+                            <div class="year">年</div>
+                            <div class="money">本利和</div>
+                            `;
+                box.append(tmpText);
+                console.log('ok', myBtn);
+                let data = [];
+                let sumMoney = 0;
+                let tmpdata = {};
+                for (tmpYear = 1; tmpYear <= yearValue; tmpYear++) {
+                    console.log('tmpYear', tmpYear);
+                    console.log('yearValue', yearValue);
+
+                    sumMoney = moneyValue * (1 + rateValue / 100) ** tmpYear;
+                    let fixMoney = sumMoney.toFixed(2);
+                    tmpdata = {
+                        'id': tmpYear,
+                        'year': tmpYear,
+                        'money': fixMoney
+                    }
+                    // console.log('data',data);
+
+                    data.push(tmpdata)
+                }
+                let tmpResult = ``;
+
+                $.each(data, function (key, value) {
+                    console.log('data', data);
+
+
+                    tmpResult = `
+                            <div class="year">${value.year}</div>
+                            <div class="money">${value.money}</div>
+                            `;
+
+                    box.append(tmpResult)
+                });
+
+            })
+
+
+        });
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
