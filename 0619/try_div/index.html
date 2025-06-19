@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div</title>
+    <style>
+        .container {
+            width: 100%;
+            display: flex;
+            margin: auto;
+        }
+
+        .box {
+            width: 20%;
+            border: 1px solid;
+            text-align: center;
+            margin-top: -1px;
+            margin-left: -1px;
+        }
+        .box1{
+            width: 70vw;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <div class="container">
+            <div class="box">id</div>
+            <div class="box">name</div>
+            <div class="box">cost</div>
+            <div class="box">stock</div>
+            <div class="box">price</div>
+        </div>
+    </div>
+    <!-- <div class="container">
+        <div class="box">1</div>
+        <div class="box">amy</div>
+        <div class="box">0911</div>
+    </div> -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script>
+
+    <script>
+        $(document).ready(function () {
+            // let container = $('.container');
+            let box1 = $('.box1');
+            let url = "./data.php"
+            let tmpText = ``;
+            $.ajax({
+                type: "get",
+                url: url,
+                // data: "data",
+                dataType: "json",
+                success: function (response) {
+                    console.log('response', response);
+                    console.log('response typeOf', typeof (response));
+                    $.each(response, function (key, value) { 
+                       tmpText = `
+                       <div class="container">
+                        <div class="box">${value.id}</div>
+                        <div class="box">${value.name}</div>
+                        <div class="box">${value.cost}</div>
+                        <div class="box">${value.stock}</div>
+                        <div class="box">${value.price}</div>
+                        </div>
+                        `;
+                    box1.append(tmpText);  
+                    });
+                    
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
