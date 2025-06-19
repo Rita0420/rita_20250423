@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js</title>
+    <style>
+        .box{
+            width: 30vw;
+            background-color: antiquewhite;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input{
+            margin-top: 2vh;
+            width: 10vw;
+        }
+        .myBtn{
+            width: 10vw;
+            margin-top: 2vh;
+        }
+        .ans {
+            width: 30vw;
+            height: 10vh;
+            border: 1px solid;
+            margin: auto;
+            font-size: 3em;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" name="" id="inputA" value="10">
+        <input type="text" name="" id="math" value="+">
+        <input type="text" name="" id="inputB" value="5">
+        <button type="submit" class="myBtn">計算</button>
+    </div>
+    <br>
+    <hr>
+
+    <div class="ans"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const inputA=$('#inputA');
+            const math=$('#math');
+            const inputB=$('#inputB');
+            const myBtn=$('.myBtn');
+            const ans=$('.ans');
+
+            myBtn.click(function(){
+                console.log('myBtn',myBtn);
+                let AValue=Number(inputA.val());
+                let BValue=Number(inputB.val());
+                let mathValue=math.val();
+                console.log('AValue',AValue);
+                console.log('BValue',BValue);
+                console.log('math',mathValue);
+
+                let result=0;
+                switch (mathValue) {
+                    case '+':
+                        result=AValue + BValue;
+                    break;
+
+                    case '-':
+                        result=AValue - BValue;
+                    break;
+                    case '*':
+                        result=AValue * BValue;
+                    break;
+                    case '/':
+                        result=AValue / BValue;
+                    break;
+                        
+                        default:
+                            break;
+                        }
+                ans.text(result);
+                
+            })
+
+
+        });
+    </script>
+</body>
+
+</html>
