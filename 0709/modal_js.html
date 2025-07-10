@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 30vw;
+            height: 30vh;
+            background-color: lightblue;
+            text-align: center;
+            position: relative;
+            margin: auto;
+        }
+        .close{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .btn{
+            width: 10vw;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">
+        <button type="button" id="myBtn">新增</button>
+    </div>
+    <div class="box">
+        <div><h3>新增</h3></div>
+        <hr>
+        <div>內容</div>
+        <div class="close">
+            <button type="button">X</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            const myBtn=$('#myBtn');
+            const box=$('.box');
+            box.toggle();
+            myBtn.click(function(){
+                
+                box.toggle();
+                const close=$('.close');
+                close.click(function(){
+                    box.hide();
+                })
+                
+            })
+
+        })
+
+    </script>
+</body>
+</html>
