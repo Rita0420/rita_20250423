@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        img {
+            width: 20vw;
+        }
+
+        button {
+            width: 20vw;
+        }
+
+        #score {
+            width: 20vw;
+            border: 3px solid lightslategray;
+            background-color: rgba(119, 136, 153, 0.452);
+            margin: auto;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .jump {
+            animation: jump 0.2s;
+        }
+
+        #new{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-2">
+                <span id="time"></span>
+            </div>
+            <div class="col-8">
+                <h3>投籃大賽</h3>
+            </div>
+            <div class="col-2">
+                最高分數:<span id="top">0</span>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <img src="./images/basket.png" alt="">
+            </div>
+            <div class="col-12 col-sm-4">
+                <div id="score">
+                    0
+                </div>
+                <div id="new">
+                    <img src="./images/01.png" alt="">
+                </div>
+            </div>
+            <div class="col-12 col-sm-4" id="img">
+                <img src="./images/cat.png" alt="">
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success me-3" id="start">開始</button>
+                <button class="btn btn-info me-3" id="shot">投籃</button>
+                <button class="btn btn-danger" id="stop">停止</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            const start = document.getElementById('start')
+            const shot = document.getElementById('shot')
+            const stop = document.getElementById('stop')
+            const scoreDiv = document.getElementById('score')
+            const timeSpan = document.getElementById('time')
+            const topSpan = document.getElementById('top')
+            const img = document.getElementById('img')
+            const newPic = document.getElementById('new')
+
+            
+            console.log('top',top);
+            
+
+            shot.style.display = 'none'
+
+            start.addEventListener('click', function () {
+                time = 10
+                score = 0
+                scoreDiv.innerHTML = 0;
+                console.log('start');
+                shot.style.display = 'inline-block';
+                newPic.style.display='none';
+                timeSpan.setAttribute('class', '');
+                
+                timeFun = setInterval(() => {
+                    time--;
+                    timeSpan.innerHTML = time;
+                    if (time < 30) {
+                        timeSpan.setAttribute('class', 'text-danger display-2')
+                    }
+                    if (time === 0) {
+                        let top = topSpan.innerText;
+                        console.log('start top',top);
+                        
+                        let newScore = scoreDiv.innerText;
+                        clearInterval(timeFun);
+                        if (newScore > top) {
+                            topSpan.innerHTML = newScore
+                            newPic.style.display='block'
+                            timeSpan.innerHTML = 0;
+                        }
+                    }
+                }, 1000)
+
+
+            })
+
+            shot.addEventListener('click', function () {
+                console.log('shot');
+                img.classList.add('jump');
+
+                setTimeout(() => {
+                    img.classList.remove('jump');
+                }, 200); // 動畫時間要跟 CSS 一樣
+            
+
+            if (time <= 30) {
+                score += 3;
+            } else {
+                score += 2;
+            }
+
+            scoreDiv.innerHTML = score;
+
+        })
+
+        stop.addEventListener('click', function () {
+            console.log('stop');
+            shot.style.display = 'none';
+            let top = topSpan.innerText;
+            newScore = scoreDiv.innerText;
+            console.log(newScore);
+            console.log('top',top);
+            
+
+            if (newScore > top) {
+                topSpan.innerHTML = newScore
+                newPic.style.display='block'
+            }
+            score = 0;
+
+            clearInterval(timeFun);
+
+            scoreDiv.innerHTML = score;
+        })
+
+
+        });
+    </script>
+</body>
+
+</html>
