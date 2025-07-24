@@ -45,8 +45,44 @@
             animation: jump 0.2s;
         }
 
-        #new{
+        #new,#loser{
             display: none;
+        }
+
+        
+        #new,#loser img{
+            width: 10vw;
+        }
+        
+
+        #timeImg {
+            width: 15vw;
+            aspect-ratio: 1 / 1;
+            background-image: url(./images/clock.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        #time {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-60%, -50%);
+            font-weight: bolder;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        @media (max-width: 576px) {
+            .time {
+                width: 30vw;
+            }
+            #new,#loser{
+                width: 30vw;
+                position: absolute;
+                right: 2vw;
+                top: 20%;
+            }
         }
     </style>
 </head>
@@ -55,14 +91,17 @@
 
     <div class="container text-center">
         <div class="row">
-            <div class="col-2">
-                <span id="time"></span>
+            <div class="col-4 col-sm-2">
+                <div id="timeImg">
+                    <span id="time">
+                    </span>
+                </div>
             </div>
-            <div class="col-8">
+            <div class="col-4 col-sm-8">
                 <h3>投籃大賽</h3>
             </div>
-            <div class="col-2">
-                最高分數:<span id="top">0</span>
+            <div class="col-4 col-sm-2">
+                最高分數:<span id="top" class="btn btn-warning">0</span>
             </div>
             <hr>
         </div>
@@ -79,6 +118,9 @@
                 <div id="new">
                     <img src="./images/01.png" alt="">
                 </div>
+                <div id="loser">
+                    <img src="./images/woman.png" alt="">
+                </div>
             </div>
             <div class="col-12 col-sm-4" id="img">
                 <img src="./images/cat.png" alt="">
@@ -88,9 +130,10 @@
     </div>
     <div class="container text-center">
         <div class="row">
-            <div class="col">
+            <div class="col display-flex">
                 <button class="btn btn-success me-3" id="start">開始</button>
-                <button class="btn btn-info me-3" id="shot">投籃</button>
+                <!-- <button class="btn btn-info me-3" id="shot">投籃</button> -->
+                <div id="shot"><img src="./images/basketball.png" alt=""></div>
                 <button class="btn btn-danger" id="stop">停止</button>
             </div>
         </div>
@@ -117,43 +160,69 @@
             const stop = document.getElementById('stop')
             const scoreDiv = document.getElementById('score')
             const timeSpan = document.getElementById('time')
+            const timeImg = document.getElementById('timeImg')
             const topSpan = document.getElementById('top')
             const img = document.getElementById('img')
             const newPic = document.getElementById('new')
+            const loser =document.getElementById('loser')
+            // localStorage.setItem('maxScore',0)
+            let score = 0;
+            let time = 30;
+            let timeFun = null;
 
-            
-            console.log('top',top);
-            
+            let maxScore = localStorage.getItem('maxScore');
+            console.log(maxScore);
 
             shot.style.display = 'none'
+            topSpan.innerHTML = maxScore;
 
             start.addEventListener('click', function () {
-                time = 10
+                time = 30;
                 score = 0
                 scoreDiv.innerHTML = 0;
                 console.log('start');
                 shot.style.display = 'inline-block';
-                newPic.style.display='none';
+                newPic.style.display = 'none';
+                loser.style.display = 'none';
+                start.style.display = 'none';
+                timeSpan.innerHTML = time;
                 timeSpan.setAttribute('class', '');
-                
+
                 timeFun = setInterval(() => {
-                    time--;
                     timeSpan.innerHTML = time;
-                    if (time < 30) {
-                        timeSpan.setAttribute('class', 'text-danger display-2')
+                    if (time < 15) {
+                        timeSpan.setAttribute('class', 'text-danger display-5')
+                        timeImg.classList.add('jump');
+                        setTimeout(() => {
+                            timeImg.classList.remove('jump');
+                        }, 200); // 動畫時間要跟 CSS 一樣
                     }
                     if (time === 0) {
-                        let top = topSpan.innerText;
-                        console.log('start top',top);
-                        
-                        let newScore = scoreDiv.innerText;
+
+                        shot.style.display = 'none';
+                        start.style.display = 'inline-block';
+                        let top = Number(topSpan.innerText);
+                        console.log('start top', top);
+                        console.log('start toptypeof', typeof (top));
+
+                        let newScore = Number(scoreDiv.innerText);
+                        console.log('typeof newScore', typeof (newScore));
+
                         clearInterval(timeFun);
                         if (newScore > top) {
                             topSpan.innerHTML = newScore
-                            newPic.style.display='block'
+                            localStorage.setItem('maxScore', String(newScore));
+
+
+                            newPic.style.display = 'block'
                             timeSpan.innerHTML = 0;
+                        }else{
+                            loser.style.display ='block'
                         }
                     }
+                    time--;
+
+
                 }, 1000)
 
 
@@ -166,37 +235,42 @@
                 setTimeout(() => {
                     img.classList.remove('jump');
                 }, 200); // 動畫時間要跟 CSS 一樣
-            
 
-            if (time <= 30) {
-                score += 3;
-            } else {
-                score += 2;
-            }
 
-            scoreDiv.innerHTML = score;
+                if (time <= 15) {
+                    score += 3;
+                } else {
+                    score += 2;
+                }
 
-        })
+                scoreDiv.innerHTML = score;
 
-        stop.addEventListener('click', function () {
-            console.log('stop');
-            shot.style.display = 'none';
-            let top = topSpan.innerText;
-            newScore = scoreDiv.innerText;
-            console.log(newScore);
-            console.log('top',top);
-            
+            })
 
-            if (newScore > top) {
-                topSpan.innerHTML = newScore
-                newPic.style.display='block'
-            }
-            score = 0;
+            stop.addEventListener('click', function () {
+                console.log('stop');
+                clearInterval(timeFun);
+                shot.style.display = 'none';
+                start.style.display = 'inline-block';
+                timeSpan.innerHTML = 30;
+                let top = Number(topSpan.innerText);
+                let newScore = Number(scoreDiv.innerText);
+                console.log(newScore);
+                console.log('top', top);
 
-            clearInterval(timeFun);
 
-            scoreDiv.innerHTML = score;
-        })
+                if (newScore > top) {
+                    topSpan.innerHTML = newScore
+                    localStorage.setItem('maxScore', String(newScore));
+                    newPic.style.display = 'block'
+                }else{
+                    loser.style.display ='block'
+                }
+                score = 0;
+
+
+                scoreDiv.innerHTML = score;
+            })
 
 
         });
