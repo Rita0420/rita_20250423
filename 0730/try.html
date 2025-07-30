@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .box{
+            width: 50vw;
+            height: 20vh;
+            border:1px solid black;
+            margin: auto;
+            margin-top: 2vh;
+        }
+    </style>
+    </head>
+
+<body>
+    <div id="box1" class="box">
+        <button type="button" id="myBtn1" class="myBtn" data-color="red">點我</button>
+    </div>
+    <div id="box2" class="box">
+        <button type="button" id="myBtn2" class="myBtn" data-color="green">點我</button>
+    </div>
+    <div id="box3" class="box">
+        <button type="button" id="myBtn3" class="myBtn" data-color="yellow">點我</button>
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            const myBtn1=$('#myBtn1');
+            const myBtn2=$('#myBtn2');
+            const myBtn3=$('#myBtn3');
+            const myBtn=$('.myBtn');
+            
+            // myBtn1.click(function (e) { 
+            //     e.preventDefault();
+            //     console.log('this',this);
+            //     let btnBox=$(this).parent();
+            //     console.log(btnBox);
+            //     btnBox.css('background-color','red')
+            // });
+
+            //  myBtn2.click(function (e) { 
+            //     e.preventDefault();
+            //     console.log('this',this);
+            //     let btnBox=$(this).parent();
+            //     console.log(btnBox);
+            //     btnBox.css('background-color','green')
+            // });
+
+            //  myBtn3.click(function (e) { 
+            //     e.preventDefault();
+            //     console.log('this',this);
+            //     let btnBox=$(this).parent();
+            //     console.log(btnBox);
+            //     btnBox.css('background-color','yellow')
+            // });
+
+            myBtn.click(function (e) { 
+                e.preventDefault();
+                console.log('this',this);
+                let btnBox=$(this).parent();
+                console.log(btnBox);
+                let color=$(this).data('color')
+                btnBox.css('background-color',color)
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>
