@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.box {
+    height: auto;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-top: 2vh;
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+}
+
+.price {
+    width: 80%;
+    background-color: #f0f0f0;
+    border: 2px solid #dee2e6;
+    margin: 1vh auto 0;
+    border-radius: 12px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #343a40;
+    transition: all 0.2s ease;
+}
+
+.price:hover {
+    background-color: #e2e6ea;
+}
+
+.special {
+    width: 80%;
+    margin: 1vh auto 0;
+    color: #dc3545;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: none;
+}
+
+img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1vh;
+}
+
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <div class="box">
+                    <div>
+                        <img src="https://picsum.photos/id/18/200/300" alt="">
+                    </div>
+                    <div class="price" data-special="9000">
+                        10000
+                    </div>
+                    <div class="special"></div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="box">
+                    <div>
+                        <img src="https://picsum.photos/id/54/200/300" alt="">
+                    </div>
+                    <div class="price" data-special="17000">
+                        20000
+                    </div>
+                    <div class="special"></div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="box">
+                    <div>
+                        <img src="https://picsum.photos/id/41/200/300" alt="">
+                    </div>
+                    <div class="price" data-special="22000">
+                        30000
+                    </div>
+                    <div class="special"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            const myPrice=$('.price');
+            const mySpecial=$('.special');
+            
+            mySpecial.hide();
+            myPrice.on('click',function(){
+                myPrice.css('text-decoration','none')
+                mySpecial.hide();
+                console.log('ok');
+                console.log('this',$(this).text());
+                let myPriceThis=$(this);
+                console.log(myPriceThis);
+                let priceData=$(this).data('special');
+                console.log('priceData',priceData);
+                
+                let thisSpecial=myPriceThis.next();
+                console.log('thisSpecial',thisSpecial);
+                
+                thisSpecial.text(priceData);
+                thisSpecial.show();
+                
+                
+                myPriceThis.css('text-decoration','line-through')
+                
+                
+            })
+
+        });
+    </script>
+</body>
+
+</html>
