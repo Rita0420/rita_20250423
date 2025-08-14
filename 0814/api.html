@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+</head>
+
+<body>
+
+    <h3>天氣預報</h3>
+    <table id="table_id" class="display">
+        <thead id="myThead">
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th id="startTime12">2025-08-14[06-18]</th>
+                <th id="startTime24">2025-08-14[18-06]</th>
+                <th id="startTime36">2025-08-15[06-18]</th>
+            </tr>
+        </thead>
+
+        <tbody id="myTbody">
+
+        </tbody>
+    </table>
+
+    <div class="container">
+        <div class="row" id="myrow">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">Content</div>
+                    <div class="card-footer">Footer</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="../pw/api.js"></script>
+    <script>
+        $(document).ready(function () {
+            const startTime12 = $("#startTime12");
+            const startTime24 = $("#startTime24");
+            const startTime36 = $("#startTime36");
+
+            let url = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${weatherApi}`;
+
+            $.ajax({
+                type: "get",
+                url: url,
+                // data: "data",
+                dataType: "json",
+                success: function (response) {
+                    // console.log(response);
+                    // console.log(response.records.location);
+                    // console.log(response.records.location[0].weatherElement);
+                    // console.log(response.records.location[0].weatherElement[0].time[0].parameter.parameterName);
+                    let item = '';
+                    let cardItem = '';
+                    let data = response.records.location;
+                    $.each(data, function (key, value) {
+                        console.log(value);
+                        console.log(value.weatherElement);
+                        let weather = value.weatherElement;
+                        console.log(weather[0].time[0].parameter.parameterName);
+                        let icon0 = weather[0].time[0].parameter.parameterValue;
+                        let icon1 = weather[0].time[1].parameter.parameterValue;
+                        let icon2 = weather[0].time[2].parameter.parameterValue;
+
+                        let start0 = weather[0].time[0].startTime;
+                        let start1 = weather[0].time[1].startTime;
+                        let start2 = weather[0].time[2].startTime;
+                        console.log('start', start0);
+                        startTime12.text(start0);
+                        startTime24.text(start1);
+                        startTime36.text(start2);
+                        function getDayOrNight(time) {
+                            let date=new Date(time);
+                            let getDateHour=date.getHours();
+
+                            switch (getDateHour) {
+                                case 6:
+                                    dateStr='day';
+                                    break;
+                                case 12:
+                                    dateStr='day';
+                                    break;
+                                case 18:
+                                    dateStr='night';
+                                break;
+                            
+                                default:
+                                    break;
+                            }
+                            
+                        }
+
+                        getDayOrNight(start0);
+                        
+                        item = `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${weather[0].time[0].parameter.parameterName}</div>
+                                        <div class='icon'><img src="./day/${icon0}.svg" alt="" width="50%"></div>
+                                        降雨機率:${weather[1].time[0].parameter.parameterName}%<br>
+                                        最低溫度:${weather[2].time[0].parameter.parameterName}C<br>
+                                        最高溫度:${weather[4].time[0].parameter.parameterName}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${weather[0].time[1].parameter.parameterName}</div>
+                                        <div class='icon'><img src="./night/${icon1}.svg" alt="" width="50%"></div>
+                                        <br>
+                                        降雨機率:${weather[1].time[1].parameter.parameterName}%<br>
+                                        最低溫度:${weather[2].time[1].parameter.parameterName}C<br>
+                                        最高溫度:${weather[4].time[1].parameter.parameterName}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${weather[0].time[2].parameter.parameterName}</div>
+                                        <div class='icon'><img src="./day/${icon2}.svg" alt="" width="50%"></div>
+                                        <br>
+                                        降雨機率:${weather[1].time[2].parameter.parameterName}%<br>
+                                        最低溫度:${weather[2].time[2].parameter.parameterName}C<br>
+                                        最高溫度:${weather[4].time[2].parameter.parameterName}C<br>
+                                    </td>
+                                </tr>
+                            `;
+
+                        cardItem = `
+                        <div class="col-3 mt-3">
+                            <div class="card">
+                                <img class="card-img-top" src="./day/${icon0}.svg" alt="Card image" style="width:100%">
+                                <div class="card-header">${value.locationName}</div>
+                                <div class="card-body">
+
+                                    降雨機率:${weather[1].time[0].parameter.parameterName}%<br>
+                                    最低溫度:${weather[2].time[0].parameter.parameterName}C<br>
+                                    最高溫度:${weather[4].time[0].parameter.parameterName}C<br>
+                                </div>
+                                <div class="card-footer">Footer</div>
+                            </div>
+                        </div>
+                        
+                        `
+
+
+
+                        $("#myTbody").append(item);
+                        $("#myrow").append(cardItem);
+
+
+
+                    });
+
+
+                    $("#table_id").DataTable();
+                }
+
+
+
+
+
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
