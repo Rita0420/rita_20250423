@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row col">
+            <h3>結婚統計(依登記日)</h3>
+            <table id="table_id">
+                <thead id="myThead">
+                    <tr>
+                        <th>統計期間</th>
+                        <th>結婚對數</th>
+                        <th>同性婚姻</th>
+                        <th>結婚男性</th>
+                        <th>結婚女性</th>
+                        <th>離婚男性</th>
+                        <th>離婚女性</th>
+                        <th>男性結婚平均年齡</th>
+                        <th>女性結婚平均年齡</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <form id="myForm" action="/action_page.php">
+            <div class="row">
+                <div class="col" id="weatherCol">
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col" id="btnCol">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row col">
+            <h3>天氣預報</h3>
+            <table>
+                <thead id="myTheadWeather">
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th id="startTime12">2025-08-14[06-18]</th>
+                        <th id="startTime24">2025-08-14[18-06]</th>
+                        <th id="startTime36">2025-08-15[06-18]</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTbodyWeather">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            const weatherCol = $("#weatherCol");
+            const btnCol = $("#btnCol");
+            const myForm = $("#myForm");
+            
+            let urlWeather = "./weather_nested.json";
+            let url = "./marry.json";
+            let item = '';
+            $.ajax({
+                type: "get",
+                url: url,
+                data: "json",
+                // dataType: "dataType",
+                success: function (response) {
+                    // console.log(response);
+                    $.each(response, function (key, value) {
+                        item = `
+                    <tr>
+                        <td>${value.statistical_period}</td>
+                        <td>${value.number_of_marriages_total}</td>
+                        <td>${value.number_of_same_sex_marriages}</td>
+                        <td>${value.number_of_grooms_total}</td>
+                        <td>${value.number_of_brides_total}</td>
+                        <td>${value.number_of_grooms_remarriage_after_divorce}</td>
+                        <td>${value.number_of_brides_remarriage_after_divorce}</td>
+                        <td>${value.average_age_of_grooms_first_marriage}</td>
+                        <td>${value.average_age_of_brides_first_marriage}</td>
+
+                    </tr>
+                    `
+
+                        $("#myTbody").append(item)
+
+                    });
+
+                    $("#table_id").DataTable();
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: urlWeather,
+                // data: "data",
+                dataType: "json",
+                success: function (response) {
+                    const weatherData = response.location;
+                    // console.log(response);
+                    let item = '';
+                    let checkbox = '';
+                    let data = response.location;
+                    $.each(data, function (key, value) {
+                        // console.log(value);
+                        // console.log(value.hour12[0].parameter);
+                        let hour12 = value.hour12;
+                        let hour24 = value.hour24;
+                        let hour36 = value.hour36;
+                        let locationName = value.locationName;
+                        // console.log(hour12[0].parameter);
+                       
+
+                        checkbox = `
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="${locationName}">
+                            <label class="form-check-label" for="inlineCheckbox2">${locationName}</label>
+                        </div>
+                        `;
+
+                        item = `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `; 
+                            
+                            btn =`
+                             <button class="myBtn btn btn-info mt-3" data-location="${locationName}">${locationName}</button>
+                             `
+            
+                        btnCol.append(btn);
+
+                        $("#myTbodyWeather").append(item);
+                        weatherCol.append(checkbox)
+                        
+
+
+
+                    });
+
+                    myForm.submit(function (e) {
+                        e.preventDefault();
+                        let formData = myForm.serializeArray();
+                        console.log(formData);
+                        let locationArray = [];
+                        content = '';
+                        $("#myTbodyWeather").html("");
+                        $.each(formData, function (key, value) {
+
+                            locationArray.push(value.value);
+
+                        });
+                        console.log(locationArray);
+                        console.log('weatherData', weatherData);
+
+                        $.each(weatherData, function (key, value) {
+                            // console.log('value',value);
+                            // console.log('value',value.locationName);
+                            let hour12 = value.hour12;
+                            let hour24 = value.hour24;
+                            let hour36 = value.hour36;
+                            let locationName = value.locationName;
+                            let tmpLocation = value.locationName;
+                            let index = locationArray.indexOf(tmpLocation);
+
+                            if (index !== -1) {
+                                console.log('tmpLocation', tmpLocation);
+                                console.log('index', index);
+
+                                content += `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `;
+
+
+                            }
+
+                        });
+
+                        $("#myTbodyWeather").append(content);
+                    });
+
+                    const myBtn = $(".myBtn");
+                    myBtn.click(function (e) { 
+                        e.preventDefault();
+                        console.log('ok');
+                        let getLocation=$(this).data('location');
+                        console.log(getLocation);
+                        let content='';
+                        $("#myTbodyWeather").html("");
+                        $(".my-checkbox").prop("checked",false);
+                        $.each(weatherData, function (key, value) {
+                            let hour12 = value.hour12;
+                            let hour24 = value.hour24;
+                            let hour36 = value.hour36;
+                            let locationName = value.locationName;
+                            let tmpLocation = value.locationName;
+                        
+
+                            if (getLocation == tmpLocation) {
+                                console.log('tmpLocation', tmpLocation);
+                                
+
+                                content += `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `;
+
+                            }
+
+                        });
+                        $("#myTbodyWeather").append(content);
+                        
+                    });
+                }
+            });
+
+
+            // myBtn.click(function (e) { 
+            //     e.preventDefault();
+            //     $.ajax({
+            //         type: "get",
+            //         url: urlWeather,
+            //         data: "json",
+            //         // dataType: "dataType",
+            //         success: function (response) {
+            //             console.log(response);
+            //             let btnWeatherData=response.location;
+            //             console.log(btnWeatherData);
+            //             let btn='';
+            //             $.each(btnWeatherData, function (key, value) { 
+            //                  let btnName=value.locationName
+                             
+            //                  btn=`
+            //                  <button class="myBtn btn btn-info" data-location="${btnName}">${btnName}</button>
+            //                  `
+            //             });
+            //             btnCol.append(btn);
+            //         }
+            //     });
+            // });
+
+        });
+    </script>
+</body>
+
+</html>

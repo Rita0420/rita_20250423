@@ -1,0 +1,54 @@
+{
+    "location": [
+        {
+            "id": "1",
+            "locationName": "新北市",
+            "hour12": [
+                {
+                    "minT": "27",
+                    "maxT": "34",
+                    "parameter": "晴時多雲"
+                }
+            ],
+            "hour24": [
+                {
+                    "minT": "27",
+                    "maxT": "31",
+                    "parameter": "陰天"
+                }
+            ],
+            "hour36": [
+                {
+                    "minT": "27",
+                    "maxT": "34",
+                    "parameter": "晴時多雲偶陣雨"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "locationName": "台北市",
+            "hour12": [
+                {
+                    "minT": "25",
+                    "maxT": "36",
+                    "parameter": "多雲"
+                }
+            ],
+            "hour24": [
+                {
+                    "minT": "28",
+                    "maxT": "34",
+                    "parameter": "雨天"
+                }
+            ],
+            "hour36": [
+                {
+                    "minT": "25",
+                    "maxT": "31",
+                    "parameter": "晴時多雲"
+                }
+            ]
+        }
+    ]
+}

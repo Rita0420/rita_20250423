@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.2/css/dataTables.dataTables.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row col">
+            <h3>天氣預報</h3>
+            <table id="table_id">
+                <thead id="myThead">
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th id="startTime12">2025-08-14[06-18]</th>
+                        <th id="startTime24">2025-08-14[18-06]</th>
+                        <th id="startTime36">2025-08-15[06-18]</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="../pw/api.js"></script>
+    <script>
+        $(document).ready(function () {
+            const startTime12 = $("#startTime12");
+            const startTime24 = $("#startTime24");
+            const startTime36 = $("#startTime36");
+
+            let url = "./weather_nested.json";
+
+            $.ajax({
+                type: "get",
+                url: url,
+                // data: "data",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    // console.log(response.records.location);
+                    // console.log(response.records.location[0].weatherElement);
+                    // console.log(response.records.location[0].weatherElement[0].time[0].parameter.parameterName);
+                    let item = '';
+                    let data = response.location;
+                    $.each(data, function (key, value) {
+                        console.log(value);
+                        console.log(value.hour12[0].parameter);
+                        let hour12 = value.hour12;
+                        let hour24 = value.hour24;
+                        let hour36 = value.hour36;
+                        console.log(hour12[0].parameter);
+
+
+
+
+                        item = `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `;
+
+
+
+
+                        $("#myTbody").append(item);
+
+
+
+                    });
+
+
+                    $("#table_id").DataTable();
+                }
+
+
+
+
+
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
