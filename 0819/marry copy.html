@@ -123,6 +123,7 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
+    <script src="./data.js"></script>
     <script>
         $(document).ready(function () {
             const weatherCol = $("#weatherCol");
@@ -130,8 +131,13 @@
             const myForm = $("#myForm");
             const myLSel = $("#Lsel");
             const mySel = $("#sel");
+            const myTbody = $("#myTbody");
+            const myTbodyWeather = $("#myTbodyWeather");
 
-            let urlWeather = "./weather_by_area_flat.json";
+            //marry
+            let weatherData = myData;
+            console.log('myData', weatherData);
+
             let url = "./marry.json";
             let item = '';
             $.ajax({
@@ -157,280 +163,178 @@
                     </tr>
                     `
 
-                        $("#myTbody").append(item)
+                        myTbody.append(item)
 
                     });
 
                     $("#table_id").DataTable();
                 }
             });
-
-            $.ajax({
-                type: "get",
-                url: urlWeather,
-                // data: "data",
-                dataType: "json",
-                success: function (response) {
-                    const weatherData = response.location;
-                    // console.log(response);
-                    let item = '';
-                    let checkbox = '';
-
-                    $.each(weatherData, function (key, value) {
-                        // console.log(value);
-                        // console.log(value.hour12[0].parameter);
+            //marry end
+            function showLocationWeatherFun(getLocation) {
+                myTbodyWeather.html('');
+                let itemWeather = '';
+                $.each(weatherData, function (key, value) {
+                    console.log('value', value.location);
+                    let locationValue = value.location;
+                    $.each(locationValue, function (key, value) {
                         let hour12 = value.hour12;
                         let hour24 = value.hour24;
                         let hour36 = value.hour36;
                         let locationName = value.locationName;
-                        // console.log(hour12[0].parameter);
+                        let LselValue = value.area;
+                        if (getLocation == locationName) {
+                            itemWeather += `
+                                <tr>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `;
+                        }
 
+                    });
 
-                        checkbox = `
+                });
+                myTbodyWeather.append(itemWeather);
+            }
+            let itemTmp = '';
+            let checkbox = '';
+            let btn = '';
+
+            $.each(weatherData, function (key, value) {
+                console.log('value', value.location);
+                let locationValue = value.location;
+                $.each(locationValue, function (key, value) {
+                    let hour12 = value.hour12;
+                    let hour24 = value.hour24;
+                    let hour36 = value.hour36;
+                    let locationName = value.locationName;
+                    let LselValue = value.area;
+
+                    itemTmp += `
+                                <tr>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                        最低溫度:${hour12[0].minT}C<br>
+                                        最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                                    
+                                </tr>
+                            `;
+                    checkbox += `
                         <div class="form-check form-check-inline ">
                             <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="${locationName}">
                             <label class="form-check-label" for="inlineCheckbox2">${locationName}</label>
                         </div>
                         `;
 
-                        item = `
-                                <tr>
-                                    <td>
-                                        ${value.locationName}
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour12[0].parameter}</div>
-                                        最低溫度:${hour12[0].minT}C<br>
-                                        最高溫度:${hour12[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour24[0].parameter}</div>
-                                        最低溫度:${hour24[0].minT}C<br>
-                                        最高溫度:${hour24[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour36[0].parameter}</div>
-                                        最低溫度:${hour36[0].minT}C<br>
-                                        最高溫度:${hour36[0].maxT}C<br>
-                                    </td>
-                                    
-                                </tr>
-                            `;
-
-                        btn = `
+                    btn += `
                              <button class="myBtn btn btn-info mt-3" data-location="${locationName}">${locationName}</button>
                              `
+                });
 
-                        Loption = `
-                            <option class="wOption" value="${value.area}">${locationName}</option>
-                        `
-
-                        btnCol.append(btn);
-                        myLSel.append(Loption);
-                        $("#myTbodyWeather").append(item);
-                        weatherCol.append(checkbox)
-
-
-                        const LselValue = value.area;
-
-                        // console.log('LselValue',LselValue);
-
-                    });
-
-
-
-                    //select
-                    mySel.change(function (e) {
-                        e.preventDefault();
-                        let selValue = $(this).val();
-                        console.log('selValue', selValue);
-                        myLSel.html("");
-                        $("#myTbodyWeather").html("");
-
-                        $.each(weatherData, function (key, value) {
-                            // console.log('value area',value.area);
-                            let hour12 = value.hour12;
-                            let hour24 = value.hour24;
-                            let hour36 = value.hour36;
-                            let locationName = value.locationName;
-                            let LselValue = value.area;
-                            console.log('LselValue', LselValue);
-                            // console.log('selValue', selValue);
-                            if (selValue == LselValue) {
-                                Loption = `
-                                    <option class="wOption" value="${locationName}" data-location="${locationName}">${locationName}</option>
-                                    `;
-                            item = `
-                                <tr>
-                                    <td>
-                                        ${value.locationName}
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour12[0].parameter}</div>
-                                        最低溫度:${hour12[0].minT}C<br>
-                                        最高溫度:${hour12[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour24[0].parameter}</div>
-                                        最低溫度:${hour24[0].minT}C<br>
-                                        最高溫度:${hour24[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour36[0].parameter}</div>
-                                        最低溫度:${hour36[0].minT}C<br>
-                                        最高溫度:${hour36[0].maxT}C<br>
-                                    </td>
-                                    
-                                </tr>
-                            `;
-                            
-                                myLSel.append(Loption);
-                                console.log('this', $(this));
-                                $("#myTbodyWeather").append(item);
-                                myLSel.change(function (e) {
-                                    e.preventDefault();
-                                    $("#myTbodyWeater").html("");
-                                    console.log($(this).val());
-                                    
-                                    let LSelVal = $(this).val();
-                                    if (LSelVal == LselValue) {
-                                        myLSel.append(Loption);
-                                        
-                                    }
-                                });
-
-                            }
-                        });
-
-                    });
-
-                    //select end
-
-
-                    // checkbox
-                    myForm.submit(function (e) {
-                        e.preventDefault();
-                        let formData = myForm.serializeArray();
-                        console.log(formData);
-                        let locationArray = [];
-                        content = '';
-                        $("#myTbodyWeather").html("");
-                        $.each(formData, function (key, value) {
-
-                            locationArray.push(value.value);
-
-                        });
-                        console.log(locationArray);
-                        console.log('weatherData', weatherData);
-
-                        $.each(weatherData, function (key, value) {
-                            // console.log('value',value);
-                            // console.log('value',value.locationName);
-                            let hour12 = value.hour12;
-                            let hour24 = value.hour24;
-                            let hour36 = value.hour36;
-                            let locationName = value.locationName;
-                            let tmpLocation = value.locationName;
-                            let index = locationArray.indexOf(tmpLocation);
-                            // console.log('area',value.area);
-
-                            if (index !== -1) {
-                                console.log('tmpLocation', tmpLocation);
-                                console.log('index', index);
-
-                                content += `
-                                <tr>
-                                    <td>${key + 1}</td>
-                                    <td>
-                                        ${value.locationName}
-                                        </td>
-                                        <td>
-                                            <div class='weather'>${hour12[0].parameter}</div>
-                                            最低溫度:${hour12[0].minT}C<br>
-                                            最高溫度:${hour12[0].maxT}C<br>
-                                            </td>
-                                            <td>
-                                                <div class='weather'>${hour24[0].parameter}</div>
-                                                最低溫度:${hour24[0].minT}C<br>
-                                                最高溫度:${hour24[0].maxT}C<br>
-                                                </td>
-                                                <td>
-                                                    <div class='weather'>${hour36[0].parameter}</div>
-                                                    最低溫度:${hour36[0].minT}C<br>
-                                                    最高溫度:${hour36[0].maxT}C<br>
-                                                    </td>
-                                                    
-                                                    </tr>
-                                                    `;
-
-
-                            }
-
-                        });
-
-                        $("#myTbodyWeather").append(content);
-                    });
-
-                    // checkbox end
-
-                    //btn
-                    const myBtn = $(".myBtn");
-                    myBtn.click(function (e) {
-                        e.preventDefault();
-                        console.log('ok');
-                        let getLocation = $(this).data('location');
-                        console.log(getLocation);
-                        let content = '';
-                        $("#myTbodyWeather").html("");
-                        $(".my-checkbox").prop("checked", false);
-                        $.each(weatherData, function (key, value) {
-                            let hour12 = value.hour12;
-                            let hour24 = value.hour24;
-                            let hour36 = value.hour36;
-                            let locationName = value.locationName;
-                            let tmpLocation = value.locationName;
-
-
-                            if (getLocation == tmpLocation) {
-                                console.log('tmpLocation', tmpLocation);
-
-
-                                content += `
-                                <tr>
-                                    <td>${key + 1}</td>
-                                    <td>
-                                        ${value.locationName}
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour12[0].parameter}</div>
-                                        最低溫度:${hour12[0].minT}C<br>
-                                        最高溫度:${hour12[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour24[0].parameter}</div>
-                                        最低溫度:${hour24[0].minT}C<br>
-                                        最高溫度:${hour24[0].maxT}C<br>
-                                    </td>
-                                    <td>
-                                        <div class='weather'>${hour36[0].parameter}</div>
-                                        最低溫度:${hour36[0].minT}C<br>
-                                        最高溫度:${hour36[0].maxT}C<br>
-                                    </td>
-                                    
-                                </tr>
-                            `;
-
-                            }
-
-                        });
-                        $("#myTbodyWeather").append(content);
-
-                    });
-                }
+                myTbodyWeather.append(itemTmp);
+                weatherCol.append(checkbox);
+                btnCol.append(btn);
             });
-            //btn end
+
+            myForm.submit(function (e) {
+                e.preventDefault();
+                myTbodyWeather.html("");
+                let formData = myForm.serializeArray();
+                console.log(formData);
+                let locationArray = [];
+                let content='';
+                $.each(formData, function (key, value) {
+
+                    locationArray.push(value.value);
+
+                });
+                console.log(locationArray);
+                
+                $.each(weatherData, function (key, value) {
+                    // console.log('value',value);
+                    // console.log('value',value.locationName);
+                    let hour12 = value.hour12;
+                    let hour24 = value.hour24;
+                    let hour36 = value.hour36;
+                    let locationName = value.locationName;
+                    let index = locationArray.indexOf(locationName);
+                    // console.log('area',value.area);
+
+                    if (index !== -1) {
+                        console.log('tmpLocation', tmpLocation);
+                        console.log('index', index);
+
+                        content += `
+                                <tr>
+                                    <td>${key + 1}</td>
+                                    <td>
+                                        ${value.locationName}
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour12[0].parameter}</div>
+                                    最低溫度:${hour12[0].minT}C<br>
+                                    最高溫度:${hour12[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour24[0].parameter}</div>
+                                        最低溫度:${hour24[0].minT}C<br>
+                                        最高溫度:${hour24[0].maxT}C<br>
+                                    </td>
+                                    <td>
+                                        <div class='weather'>${hour36[0].parameter}</div>
+                                        最低溫度:${hour36[0].minT}C<br>
+                                        最高溫度:${hour36[0].maxT}C<br>
+                                    </td>
+                        
+                                </tr>
+                                `;
+
+
+                    }
+
+                });
+                myTbodyWeather.append(content);
+
+            });
+
+
+
+
 
         });
+
     </script>
 </body>
 

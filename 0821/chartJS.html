@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+        integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <div class="col">
+                <button type="button" id="myBtn">myBtn</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+        integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            function chartFun(myDataInput, myLabelsInput) {
+                const ctx = document.getElementById("myChart");
+                let myData = myDataInput;
+                let myLabels = myLabelsInput;
+
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: myLabels,
+                        datasets: [{
+                            label: '# of Votes',
+                            data: myData,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            let data1 = [
+                {
+                    id: 1,
+                    name: "1月",
+                    money: 100,
+                },
+                {
+                    id: 2,
+                    name: "2月",
+                    money: 200,
+                },
+                {
+                    id: 3,
+                    name: "3月",
+                    money: 300,
+                },
+                {
+                    id: 4,
+                    name: "4月",
+                    money: 400,
+                },
+                {
+                    id: 5,
+                    name: "5月",
+                    money: 500,
+                },
+                {
+                    id: 6,
+                    name: "6月",
+                    money: 600,
+                },
+            ];
+
+            let data2 = [
+                {
+                    id: 1,
+                    name: "1月",
+                    money: 600,
+                },
+                {
+                    id: 2,
+                    name: "2月",
+                    money: 500,
+                },
+                {
+                    id: 3,
+                    name: "3月",
+                    money: 400,
+                },
+                {
+                    id: 4,
+                    name: "4月",
+                    money: 300,
+                },
+                {
+                    id: 5,
+                    name: "5月",
+                    money: 200,
+                },
+                {
+                    id: 6,
+                    name: "6月",
+                    money: 100,
+                },
+            ];
+            let data3 = [
+                {
+                    id: 1,
+                    name: "1月",
+                    money: 500,
+                },
+                {
+                    id: 2,
+                    name: "2月",
+                    money: 500,
+                },
+                {
+                    id: 3,
+                    name: "3月",
+                    money: 400,
+                },
+                {
+                    id: 4,
+                    name: "4月",
+                    money: 200,
+                },
+                {
+                    id: 5,
+                    name: "5月",
+                    money: 100,
+                },
+                {
+                    id: 6,
+                    name: "6月",
+                    money: 100,
+                },
+            ];
+
+
+            
+           
+        });
+    </script>
+</body>
+
+</html>

@@ -3,6 +3,7 @@
         {
             "id": "1",
             "locationName": "南投縣",
+            "area":"中部",
             "hour12": [
                 {
                     "minT": "25",
